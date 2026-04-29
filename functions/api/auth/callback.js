@@ -18,7 +18,6 @@ export async function onRequestGet(context) {
   const result = await response.json();
   const token = result.access_token;
 
-  // This script sends the token back to the CMS in your browser
   const content = `
     <html><body><script>
       (function() {
@@ -31,4 +30,3 @@ export async function onRequestGet(context) {
     </script></body></html>`;
 
   return new Response(content, { headers: { "content-type": "text/html" } });
-}
