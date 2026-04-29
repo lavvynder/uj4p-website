@@ -18,7 +18,7 @@ export async function onRequestGet(context) {
   const result = await response.json();
   const token = result.access_token;
 
-  const content = `
+const content = `
     <html><body><script>
       (function() {
         function receiveMessage(e) {
