@@ -19,15 +19,40 @@
         <p class="text-xl italic opacity-80 border-b border-gray-400 pb-6 inline-block">Join us in community and action.</p>
     </div>
 
-    <div class="max-w-5xl mx-auto w-full bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 mb-12">
-        <iframe 
-            src="https://en.wikipedia.org/wiki/Main_Page"
-            style="border: 0" 
-            width="100%" 
-            height="700" 
-            frameborder="0">
-        </iframe>
-    </div>
+  <div class="max-w-5xl mx-auto w-full bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+    <iframe 
+        style="border: 0" 
+        width="100%" 
+        height="600" 
+        srcdoc='
+            <html>
+            <head>
+                <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+                <style>
+                    body { 
+                        background-color: #e5e3d9; 
+                        display: flex; 
+                        flex-direction: column; 
+                        align-items: center; 
+                        justify-content: center; 
+                        height: 100vh; 
+                        margin: 0; 
+                        font-family: "EB Garamond", serif; 
+                        color: #1e3a8a; 
+                        text-align: center;
+                    }
+                    h2 { text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+                    p { font-style: italic; opacity: 0.8; font-size: 1.2rem; }
+                </style>
+            </head>
+            <body>
+                <h2>Under Construction</h2>
+                <p>The UJ4P calendar is being updated.<br>Please check back soon.</p>
+            </body>
+            </html>
+        '>
+    </iframe>
+</div>
 
     <div class="max-w-3xl mx-auto w-full bg-blue-900/5 border border-blue-900/20 rounded-2xl p-8 mb-20">
         <h2 class="text-2xl font-bold mb-4 text-blue-900 uppercase tracking-wide">Community Safety & Privacy</h2>
