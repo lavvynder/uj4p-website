@@ -24,20 +24,14 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
     async function loadBlogPosts() {
-        // NOTE: Replace 'lavvynder/uj4p-website' with your exact repo name
         const repo = "lavvynder/uj4p-website"; 
         const container = document.getElementById('blog-posts-container');
         
         try {
-            // We fetch the list from your live site's folder instead of the private GitHub API
             const response = await fetch('/blog/'); 
             if (!response.ok) throw new Error("Folder not accessible");
 
-            // For now, since listing private files is hard, let's use a smarter 
-            // way once you have 2-3 posts. But to get your Test Post showing:
-            
-            // Temporary fix to see your test post:
-            const testPostName = "test-post.md"; // Change this to your actual file name in GitHub
+            const testPostName = "post.html";
             
             const card = `
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow border border-gray-100 p-6">
