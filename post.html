@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UJ4P | Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { background-color: #e5e3d9; font-family: 'EB Garamond', serif; }
+        .blog-content h1 { font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; color: #1e3a8a; }
+        .blog-content p { margin-bottom: 1.25rem; line-height: 1.75; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="p-6 text-center">
+        <a href="/blog.html" class="text-blue-900 font-bold hover:underline">← Back to All Posts</a>
+    </nav>
+
+    <article class="max-w-3xl mx-auto bg-white shadow-lg rounded-xl my-10 p-8 md:p-12">
+        <div id="post-content" class="blog-content">
+            <p class="text-center italic text-gray-500">Loading dispatch...</p>
+        </div>
+    </article>
+
+    <script>
+        async function renderPost() {
+            // 1. Get the post filename from the URL (e.g., post.html?id=my-post.md)
+            const params = new URLSearchParams(window.location.search);
+            const postId = params.get('id');
+            const container = document.getElementById('post-content');
+
+            if (!postId) {
+                container.innerHTML = "<h1>Post not found</h1>";
+                return;
+            }
+
+            try {
+                // 2. Fetch the actual markdown file from your /blog folder
+                const response = await fetch(`/blog/${postId}`);
+                if (!response.ok) throw new Error("Could not find the post file");
+                
+                const rawMarkdown = await response.text();
+
+                // 3. Clean up the "Frontmatter" (the Title/Date part at the top)
+                const cleanMarkdown = rawMarkdown.replace(/^---[\s\S]*?---/, '');
+                
+                // 4. Convert to HTML and display
+                container.innerHTML = marked.parse(cleanMarkdown);
+                
+                // Set the page title to something nice
+                document.title = "UJ4P | " + postId.replace('.md', '').replace(/-/g, ' ');
+
+            } catch (err) {
+                container.innerHTML = "<h1>Error loading post</h1><p>Please try again later.</p>";
+            }
+        }
+        renderPost();
+    </script>
+</body>
+</html>
