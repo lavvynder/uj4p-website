@@ -55,13 +55,12 @@
 
                 const cleanMarkdown = rawMarkdown.replace(/^---[\s\S]*?---/, '');
                 
-                container.innerHTML = `
-                    <h1 class="text-5xl font-bold text-blue-900 mb-2 leading-tight">${prettyTitle}</h1>
-                    <p class="text-blue-700 uppercase tracking-[0.2em] font-bold text-sm mb-10 pb-4 border-b">Official Dispatch</p>
-                    <div class="blog-body-text">
-                        ${marked.parse(cleanMarkdown)}
-                    </div>
-                `;
+               container.innerHTML = `
+    <h1 class="text-5xl font-bold text-blue-900 mb-8 border-b pb-6 leading-tight">${prettyTitle}</h1>
+    <div class="blog-body-text">
+        ${marked.parse(cleanMarkdown)}
+    </div>
+`;
                 
                 document.title = "UJ4P | " + prettyTitle;
 
