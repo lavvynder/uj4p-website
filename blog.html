@@ -47,16 +47,15 @@
                     const prettyTitle = titleMatch ? titleMatch[1] : file.name.replace('.md', '');
 
                     const card = `
-                        <div class="bg-white rounded-lg shadow-md p-8 flex flex-col justify-between border-t-4 border-blue-900">
-                            <div>
-                                <h2 class="text-2xl font-bold text-blue-900 mb-4 leading-tight">${prettyTitle}</h2>
-                                <p class="text-gray-500 text-sm mb-6 uppercase tracking-widest font-bold">Dispatch</p>
-                            </div>
-                            <a href="post.html?id=${file.name}" class="inline-block bg-blue-900 text-white text-center px-6 py-2 rounded hover:bg-blue-800 transition-colors font-bold">
-                                READ ARTICLE →
-                            </a>
-                        </div>
-                    `;
+    <div class="bg-white rounded-lg shadow-md p-8 flex flex-col justify-between border-t-4 border-blue-900">
+        <div>
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 leading-tight">${prettyTitle}</h2>
+        </div>
+        <a href="post.html?id=${file.name}" class="inline-block bg-blue-900 text-white text-center px-6 py-2 rounded hover:bg-blue-800 transition-colors font-bold uppercase tracking-widest text-sm">
+            Read Article →
+        </a>
+    </div>
+`;
                     container.innerHTML += card;
                 }
             }
