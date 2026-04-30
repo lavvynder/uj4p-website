@@ -25,38 +25,39 @@
     </article>
 
     <script>
-        async function renderPost() {
-            // 1. Get the post filename from the URL (e.g., post.html?id=my-post.md)
-            const params = new URLSearchParams(window.location.search);
-            const postId = params.get('id');
-            const container = document.getElementById('post-content');
+    async function renderPost() {
+        const params = new URLSearchParams(window.location.search);
+        const postId = params.get('id');
+        const container = document.getElementById('post-content');
 
-            if (!postId) {
-                container.innerHTML = "<h1>Post not found</h1>";
-                return;
-            }
-
-            try {
-                // 2. Fetch the actual markdown file from your /blog folder
-                const response = await fetch(`/blog/${postId}`);
-                if (!response.ok) throw new Error("Could not find the post file");
-                
-                const rawMarkdown = await response.text();
-
-                // 3. Clean up the "Frontmatter" (the Title/Date part at the top)
-                const cleanMarkdown = rawMarkdown.replace(/^---[\s\S]*?---/, '');
-                
-                // 4. Convert to HTML and display
-                container.innerHTML = marked.parse(cleanMarkdown);
-                
-                // Set the page title to something nice
-                document.title = "UJ4P | " + postId.replace('.md', '').replace(/-/g, ' ');
-
-            } catch (err) {
-                container.innerHTML = "<h1>Error loading post</h1><p>Please try again later.</p>";
-            }
+        if (!postId) {
+            container.innerHTML = "<h1>Post not found</h1>";
+            return;
         }
-        renderPost();
-    </script>
+
+        try {
+            // We use the 'raw' github content URL to get just the text
+            const repo = "lavvynder/uj4p-website";
+            const response = await fetch(`https://raw.githubusercontent.com/${repo}/main/blog/${postId}`);
+            
+            if (!response.ok) throw new Error("Could not find the post file");
+            
+            const rawMarkdown = await response.text();
+
+            // This removes the --- stuff at the top of the file
+            const cleanMarkdown = rawMarkdown.replace(/^---[\s\S]*?---/, '');
+            
+            // Convert to HTML
+            container.innerHTML = marked.parse(cleanMarkdown);
+            
+            document.title = "UJ4P | " + postId.replace('.md', '').replace(/-/g, ' ');
+
+        } catch (err) {
+            container.innerHTML = "<h1>Error loading post</h1><p>Please ensure the repository is public or the filename is correct.</p>";
+        }
+    }
+    renderPost();
+</script>
+    
 </body>
 </html>
