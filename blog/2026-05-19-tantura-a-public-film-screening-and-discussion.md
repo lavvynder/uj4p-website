@@ -9,3 +9,7 @@ All are welcome. \
 Send questions and accessbiility needs to utahjewsforpalestine@proton.me
 
 Hope to see you there!
+
+
+
+![](/images/uploads/tantura_print_flyer.jpg)
