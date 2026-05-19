@@ -8,6 +8,4 @@ All are welcome. \
 \
 Send questions and accessbiility needs to utahjewsforpalestine@proton.me
 
-
-
 Hope to see you there!
